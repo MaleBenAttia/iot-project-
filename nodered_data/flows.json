@@ -1,0 +1,860 @@
+[
+    {
+        "id": "733351c37368d0b7",
+        "type": "tab",
+        "label": "Capteurs -> PWM",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "a7485b0b96534c53",
+        "type": "tab",
+        "label": "Anomalies + Alertes",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "ia-integration-flow",
+        "type": "tab",
+        "label": "IA Integration",
+        "disabled": false,
+        "info": "Flux IA - Appel des 3 modèles toutes les 30 secondes"
+    },
+    {
+        "id": "0657d3294f80d373",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "192.168.100.214",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "55aa9ac5f8b7c333",
+        "type": "tls-config",
+        "name": "",
+        "cert": "",
+        "key": "",
+        "ca": "",
+        "certname": "client.crt",
+        "keyname": "client.key",
+        "caname": "ca.crt",
+        "servername": "",
+        "verifyservercert": false,
+        "alpnprotocol": ""
+    },
+    {
+        "id": "d091252a4a8788de",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "192.168.100.214",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "9d8d0a1ff5044a7e",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "192.168.100.214",
+        "port": "1884",
+        "clientid": "nodered-thingsboard-01",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "fbacf16aa36bb4ab",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "192.168.100.214",
+        "port": "8883",
+        "tls": "55aa9ac5f8b7c333",
+        "clientid": "nodered-client",
+        "autoConnect": true,
+        "usetls": true,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "6d7d9e589dd74790",
+        "type": "mqtt in",
+        "z": "733351c37368d0b7",
+        "name": "",
+        "topic": "smart_lighting/+/sensors/#",
+        "qos": "1",
+        "datatype": "auto-detect",
+        "broker": "fbacf16aa36bb4ab",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 190,
+        "y": 240,
+        "wires": [
+            [
+                "dd08baa2d68edf06",
+                "d03f0e7d37eef82b"
+            ]
+        ]
+    },
+    {
+        "id": "dd08baa2d68edf06",
+        "type": "json",
+        "z": "733351c37368d0b7",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 190,
+        "y": 580,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c8eede0af2d5f46f",
+        "type": "function",
+        "z": "733351c37368d0b7",
+        "name": "Logique PWM",
+        "func": "// === LOGIQUE PWM - VERSION FINALE ===\nconst topic = msg.topic || '';\nconst lampId = topic.split('/')[1] || 'node_01';\n\n// Récupération des dernières valeurs\nlet ldr_value = flow.get('last_ldr') || 500;\nlet pir_detected = flow.get('last_pir_detected') || false;\nlet pir_count = flow.get('last_pir_count') || 0;\n\n// Mise à jour selon le topic\nif (topic.includes('ldr')) {\n    ldr_value = msg.payload.value !== undefined ? msg.payload.value : ldr_value;\n    flow.set('last_ldr', ldr_value);\n}\nelse if (topic.includes('pir')) {\n    pir_detected = msg.payload.detected !== undefined ? msg.payload.detected : pir_detected;\n    pir_count = msg.payload.count_10min !== undefined ? msg.payload.count_10min : pir_count;\n    flow.set('last_pir_detected', pir_detected);\n    flow.set('last_pir_count', pir_count);\n}\n\n// Calcul PWM\nconst hour = new Date().getHours();\nconst isNight = (ldr_value < 80);\n\nlet pwm = 0;\nif (!isNight) {\n    pwm = 0;\n} else if (pir_detected || pir_count > 2) {\n    pwm = 100;\n} else if (hour >= 22 || hour <= 5) {\n    pwm = 20;\n} else {\n    pwm = 50;\n}\n\n// Sauvegarde pour IA\nflow.set('last_ldr', ldr_value);\nflow.set('last_pir_count', pir_count);\nflow.set('last_pir_detected', pir_detected);\nflow.set('last_pwm', pwm);\n\nmsg.payload = {\n    lampId: lampId,\n    pwm: Math.round(pwm),\n    source: \"Node-RED\",\n    isNight: isNight,\n    ldr: Math.round(ldr_value),\n    pir: pir_detected,\n    ts: Date.now()\n};\n\nmsg.topic = `smart_lighting/${lampId}/cmd/pwm`;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 740,
+        "y": 280,
+        "wires": [
+            [
+                "45016d5e6e114d3a",
+                "260fd198ad0803a5",
+                "de1ffaf3e7f829fc"
+            ]
+        ]
+    },
+    {
+        "id": "45016d5e6e114d3a",
+        "type": "mqtt out",
+        "z": "733351c37368d0b7",
+        "name": "Commande PWM",
+        "topic": "smart_lighting/node_01/cmd/pwm",
+        "qos": "1",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "fbacf16aa36bb4ab",
+        "x": 990,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "260fd198ad0803a5",
+        "type": "debug",
+        "z": "733351c37368d0b7",
+        "name": "debug 1",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1000,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "d03f0e7d37eef82b",
+        "type": "switch",
+        "z": "733351c37368d0b7",
+        "name": "",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "cont",
+                "v": "ldr",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": "pir",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 460,
+        "y": 280,
+        "wires": [
+            [
+                "c8eede0af2d5f46f"
+            ],
+            [
+                "c8eede0af2d5f46f",
+                "1bd582adf418e966"
+            ],
+            [
+                "932d920cc137973c"
+            ]
+        ]
+    },
+    {
+        "id": "932d920cc137973c",
+        "type": "debug",
+        "z": "733351c37368d0b7",
+        "name": "debug 3",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 440,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "de1ffaf3e7f829fc",
+        "type": "function",
+        "z": "733351c37368d0b7",
+        "name": "Format TB - PWM+Capteurs",
+        "func": "msg.payload = {\n    ldr_value: msg.payload.ldr,\n    pir_detected: msg.payload.pir ? 1 : 0,\n    is_night: msg.payload.isNight ? 1 : 0,\n    pwm_led1: msg.payload.pwm,\n    pwm_led2: msg.payload.pwm,\n    pwm_led3: msg.payload.pwm,\n    pwm_led4: msg.payload.pwm\n};\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 740,
+        "y": 560,
+        "wires": [
+            [
+                "73fc43d3ea02ef39"
+            ]
+        ]
+    },
+    {
+        "id": "73fc43d3ea02ef39",
+        "type": "mqtt out",
+        "z": "733351c37368d0b7",
+        "name": "ThingsBoard ",
+        "topic": "v1/devices/me/telemetry",
+        "qos": "1",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "9d8d0a1ff5044a7e",
+        "x": 990,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "1bd582adf418e966",
+        "type": "function",
+        "z": "733351c37368d0b7",
+        "name": "Format TB - PIR Zones",
+        "func": "const payload = msg.payload;\nmsg.payload = {\n    pir_zone_a_detected: payload.zone === 'A' ? (payload.detected ? 1 : 0) : undefined,\n    pir_zone_a_count: payload.zone === 'A' ? payload.count_10min : undefined,\n    pir_zone_b_detected: payload.zone === 'B' ? (payload.detected ? 1 : 0) : undefined,\n    pir_zone_b_count: payload.zone === 'B' ? payload.count_10min : undefined\n};\n// Supprimer les clés undefined\nObject.keys(msg.payload).forEach(k => {\n    if (msg.payload[k] === undefined) delete msg.payload[k];\n});\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 750,
+        "y": 120,
+        "wires": [
+            [
+                "a1a2f0132d7dc649"
+            ]
+        ]
+    },
+    {
+        "id": "a1a2f0132d7dc649",
+        "type": "mqtt out",
+        "z": "733351c37368d0b7",
+        "name": "ThingsBoard ",
+        "topic": "v1/devices/me/telemetry",
+        "qos": "1",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "9d8d0a1ff5044a7e",
+        "x": 970,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "657e6c5b17f5d470",
+        "type": "mqtt in",
+        "z": "a7485b0b96534c53",
+        "name": "Consommation réelle",
+        "topic": "smart_lighting/+/sensors/power",
+        "qos": "1",
+        "datatype": "auto-detect",
+        "broker": "fbacf16aa36bb4ab",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 160,
+        "y": 180,
+        "wires": [
+            [
+                "504e0ad9191f169c"
+            ]
+        ]
+    },
+    {
+        "id": "504e0ad9191f169c",
+        "type": "function",
+        "z": "a7485b0b96534c53",
+        "name": "Détecteur de panne",
+        "func": "const payload = msg.payload;\nconst lampId = 'node_01';\nconst anomalies = [];\n\n// Dernière commande PWM stockée\nconst lastPwm = flow.get('last_pwm_command') || { led1: 0, led2: 0, led3: 0, led4: 0 };\n\nfor (let i = 1; i <= 4; i++) {\n    const ledKey = 'led' + i;\n    const wattsReal = payload[ledKey + '_watts'] !== undefined ? payload[ledKey + '_watts'] : 0;\n    const pwmCmd = payload[ledKey + '_pwm_cmd'] !== undefined ? payload[ledKey + '_pwm_cmd'] : lastPwm[ledKey];\n\n    // Si PWM = 0, on ne détecte pas d'anomalie (LED éteinte = 0W normal)\n    if (pwmCmd === 0) continue;\n\n    const expectedW = (pwmCmd / 100) * 17.5;\n\n    // Protection division par zéro\n    if (expectedW === 0) continue;\n\n    const anomalyScore = Math.abs(wattsReal - expectedW) / expectedW;\n\n    if (anomalyScore > 0.4) {\n        anomalies.push({\n            led: ledKey,\n            pwmCmd: pwmCmd,\n            wattsReal: wattsReal,\n            expectedW: expectedW,\n            anomalyScore: anomalyScore.toFixed(3)\n        });\n    }\n}\n\n// Mise à jour du context pour la prochaine fois\nflow.set('last_pwm_command', {\n    led1: payload.led1_pwm_cmd || lastPwm.led1,\n    led2: payload.led2_pwm_cmd || lastPwm.led2,\n    led3: payload.led3_pwm_cmd || lastPwm.led3,\n    led4: payload.led4_pwm_cmd || lastPwm.led4\n});\n\nconst totalWatts = payload.total_watts ||\n    (payload.led1_watts || 0) + (payload.led2_watts || 0) +\n    (payload.led3_watts || 0) + (payload.led4_watts || 0);\n\nmsg.payload = {\n    lampId: lampId,\n    totalWatts: totalWatts,\n    anomalies: anomalies,\n    anomalyCount: anomalies.length,\n    status: anomalies.length > 0 ? 'DEFAILLANT' : 'OK',\n    ts: Date.now()\n};\n\nmsg.anomaly = anomalies.length > 0;\nflow.set('last_total_watts', totalWatts);\nmsg.payload.led1_watts = payload.led1_watts || 0;\nmsg.payload.led2_watts = payload.led2_watts || 0;\nmsg.payload.led3_watts = payload.led3_watts || 0;\nmsg.payload.led4_watts = payload.led4_watts || 0;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 370,
+        "y": 280,
+        "wires": [
+            [
+                "8b70635fa6e924e2",
+                "4d9e68b768c3e7ca",
+                "7df5a8cd491746d3"
+            ]
+        ]
+    },
+    {
+        "id": "8b70635fa6e924e2",
+        "type": "switch",
+        "z": "a7485b0b96534c53",
+        "name": "Router anomalie",
+        "property": "anomaly",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 620,
+        "y": 140,
+        "wires": [
+            [
+                "39bd80bb8774fd4b"
+            ],
+            [
+                "65acb1bd8e380beb"
+            ]
+        ]
+    },
+    {
+        "id": "39bd80bb8774fd4b",
+        "type": "mqtt out",
+        "z": "a7485b0b96534c53",
+        "name": "Alerte panne",
+        "topic": "smart_lighting/{{payload.lampId}}/alert/failure",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "fbacf16aa36bb4ab",
+        "x": 910,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "65acb1bd8e380beb",
+        "type": "mqtt out",
+        "z": "a7485b0b96534c53",
+        "name": "Statut OK ✅",
+        "topic": "smart_lighting/{{payload.lampId}}/status",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "fbacf16aa36bb4ab",
+        "x": 960,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "d846ac2d9f05c224",
+        "type": "mqtt out",
+        "z": "a7485b0b96534c53",
+        "name": "ThingsBoard ",
+        "topic": "v1/devices/me/telemetry",
+        "qos": "1",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "9d8d0a1ff5044a7e",
+        "x": 770,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "4d9e68b768c3e7ca",
+        "type": "debug",
+        "z": "a7485b0b96534c53",
+        "name": "debug 2",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 660,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "7df5a8cd491746d3",
+        "type": "function",
+        "z": "a7485b0b96534c53",
+        "name": "Format TB - Watts+Anomalie",
+        "func": "const p = msg.payload;\nconst src = p; // issu du détecteur\n\n// Récupérer les watts individuels depuis le message original\n// (le détecteur de panne reçoit le payload power direct)\nmsg.payload = {\n    total_watts: p.totalWatts || 0,\n    anomaly_count: p.anomalyCount || 0,\n    lamp_status: p.status === 'DEFAILLANT' ? 1 : 0,\n    led1_watts: src.led1_watts || 0,\n    led2_watts: src.led2_watts || 0,\n    led3_watts: src.led3_watts || 0,\n    led4_watts: src.led4_watts || 0\n};\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 420,
+        "wires": [
+            [
+                "d846ac2d9f05c224"
+            ]
+        ]
+    },
+    {
+        "id": "timer-ia",
+        "type": "inject",
+        "z": "ia-integration-flow",
+        "name": "Toutes les 30s",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "10",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{}",
+        "payloadType": "json",
+        "x": 240,
+        "y": 420,
+        "wires": [
+            [
+                "get-context-data"
+            ]
+        ]
+    },
+    {
+        "id": "get-context-data",
+        "type": "function",
+        "z": "ia-integration-flow",
+        "name": "Préparer données IA",
+        "func": "const hour = new Date().getHours();\nconst day_of_week = new Date().getDay();\nconst is_weekend = (day_of_week === 0 || day_of_week === 6) ? 1 : 0;\n\nconst ldr_value = flow.get('last_ldr') || 50;\nconst pir_count_10min = flow.get('last_pir_count') || 3;\nconst is_night = (ldr_value < 80) ? 1 : 0;\n\nconst pwm_command = flow.get('last_pwm') || 50;\nconst current_consumption_w = flow.get('last_total_watts') || 25;\nconst expected_consumption_w = (pwm_command / 100) * 70;\n\nmsg.payload = {\n    hour: hour,\n    day_of_week: day_of_week,\n    is_weekend: is_weekend,\n    ldr_value: ldr_value,\n    is_night: is_night,\n    pir_count_10min: pir_count_10min,\n    pwm_command: pwm_command,\n    current_consumption_w: current_consumption_w,\n    expected_consumption_w: expected_consumption_w\n};\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 200,
+        "wires": [
+            [
+                "http-predict",
+                "http-anomaly",
+                "http-cluster"
+            ]
+        ]
+    },
+    {
+        "id": "http-predict",
+        "type": "http request",
+        "z": "ia-integration-flow",
+        "name": "Prédiction PWM",
+        "method": "POST",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "http://192.168.100.214:5000/predict",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 580,
+        "y": 100,
+        "wires": [
+            [
+                "publish-prediction",
+                "debug-ia",
+                "d2161af4bf9c6aa9"
+            ]
+        ]
+    },
+    {
+        "id": "http-anomaly",
+        "type": "http request",
+        "z": "ia-integration-flow",
+        "name": "Détection Anomalie",
+        "method": "POST",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "http://192.168.100.214:5000/anomaly",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 610,
+        "y": 340,
+        "wires": [
+            [
+                "publish-anomaly",
+                "debug-ia",
+                "fda3407c5a3b4847"
+            ]
+        ]
+    },
+    {
+        "id": "http-cluster",
+        "type": "http request",
+        "z": "ia-integration-flow",
+        "name": "Clustering",
+        "method": "POST",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "http://192.168.100.214:5000/cluster",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 620,
+        "y": 520,
+        "wires": [
+            [
+                "publish-cluster",
+                "debug-ia",
+                "2a678a811eee8cbf"
+            ]
+        ]
+    },
+    {
+        "id": "publish-prediction",
+        "type": "mqtt out",
+        "z": "ia-integration-flow",
+        "name": "Publier Prediction",
+        "topic": "smart_lighting/node_01/ai/prediction",
+        "qos": "0",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "fbacf16aa36bb4ab",
+        "x": 1110,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "publish-anomaly",
+        "type": "mqtt out",
+        "z": "ia-integration-flow",
+        "name": "Publier Anomalie",
+        "topic": "smart_lighting/node_01/ai/anomaly",
+        "qos": "0",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "fbacf16aa36bb4ab",
+        "x": 1210,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "publish-cluster",
+        "type": "mqtt out",
+        "z": "ia-integration-flow",
+        "name": "Publier Cluster",
+        "topic": "smart_lighting/node_01/ai/cluster",
+        "qos": "0",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "fbacf16aa36bb4ab",
+        "x": 1080,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "debug-ia",
+        "type": "debug",
+        "z": "ia-integration-flow",
+        "name": "Debug IA",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 820,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "d2161af4bf9c6aa9",
+        "type": "function",
+        "z": "ia-integration-flow",
+        "name": "Format TB - Prediction",
+        "func": "msg.payload = {\n    ai_pwm_predicted: msg.payload.pwm_predicted || 0\n};\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 880,
+        "y": 60,
+        "wires": [
+            [
+                "09b8f14ba6fed8ba"
+            ]
+        ]
+    },
+    {
+        "id": "fda3407c5a3b4847",
+        "type": "function",
+        "z": "ia-integration-flow",
+        "name": "Format TB - Anomalie IA",
+        "func": "msg.payload = {\n    ai_anomaly: msg.payload.anomaly ? 1 : 0,\n    ai_confidence: msg.payload.confidence || 0\n};\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 990,
+        "y": 380,
+        "wires": [
+            [
+                "048721ec2baebc93"
+            ]
+        ]
+    },
+    {
+        "id": "2a678a811eee8cbf",
+        "type": "function",
+        "z": "ia-integration-flow",
+        "name": "Format TB - Cluster",
+        "func": "msg.payload = {\n    ai_cluster: msg.payload.cluster\n};\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 870,
+        "y": 600,
+        "wires": [
+            [
+                "d4f14d66aff5eff0"
+            ]
+        ]
+    },
+    {
+        "id": "d4f14d66aff5eff0",
+        "type": "mqtt out",
+        "z": "ia-integration-flow",
+        "name": "ThingsBoard ",
+        "topic": "v1/devices/me/telemetry",
+        "qos": "1",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "9d8d0a1ff5044a7e",
+        "x": 1130,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "048721ec2baebc93",
+        "type": "mqtt out",
+        "z": "ia-integration-flow",
+        "name": "ThingsBoard ",
+        "topic": "v1/devices/me/telemetry",
+        "qos": "1",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "9d8d0a1ff5044a7e",
+        "x": 1230,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "09b8f14ba6fed8ba",
+        "type": "mqtt out",
+        "z": "ia-integration-flow",
+        "name": "ThingsBoard ",
+        "topic": "v1/devices/me/telemetry",
+        "qos": "1",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "9d8d0a1ff5044a7e",
+        "x": 1170,
+        "y": 60,
+        "wires": []
+    }
+]

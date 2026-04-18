@@ -1,0 +1,61 @@
+version: '3.8'
+services:
+
+  # 1. Broker MQTT — port 1883 (standard) + 8883 (MQTTS chiffré)
+  mosquitto:
+      image: eclipse-mosquitto:latest
+      container_name: iot_mosquitto
+      ports:
+        - "1883:1883"
+        - "8883:8883"
+        - "9001:9001"
+      volumes:
+        - ./mosquitto/config:/mosquitto/config
+        - ./mosquitto/certs:/mosquitto/config/certs
+        - ./mosquitto/data:/mosquitto/data
+        - ./mosquitto/log:/mosquitto/log
+      restart: unless-stopped
+  # 2. Node-RED — port 1880
+  nodered:
+    image: nodered/node-red:latest
+    container_name: iot_nodered
+    ports:
+      - "1880:1880"
+    volumes:
+      - ./nodered_data:/data
+    environment:
+      - TZ=Africa/Tunis
+    restart: unless-stopped
+    depends_on:
+      - mosquitto
+
+  # 3. Base de données PostgreSQL pour ThingsBoard
+  tb-postgres:
+    image: postgres:13
+    container_name: iot_postgres
+    environment:
+      - POSTGRES_DB=thingsboard
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  # 4. ThingsBoard — Dashboard port 9090
+  thingsboard:
+    image: thingsboard/tb-postgres:latest
+    container_name: iot_thingsboard
+    ports:
+      - "9090:9090"
+      - "1884:1883"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://tb-postgres:5432/thingsboard
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+      - TB_QUEUE_TYPE=in-memory
+    volumes:
+      - ./tb_data:/data
+      - ./tb_logs:/var/log/thingsboard
+    restart: unless-stopped
+    depends_on:
+      - tb-postgres

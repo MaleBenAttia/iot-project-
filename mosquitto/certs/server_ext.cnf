@@ -1,0 +1,13 @@
+[req]
+req_extensions = v3_req
+distinguished_name = req_distinguished_name
+
+[req_distinguished_name]
+
+[v3_req]
+subjectAltName = @alt_names
+
+[alt_names]
+IP.1 = 192.168.100.214
+DNS.1 = mosquitto
+DNS.2 = localhost
