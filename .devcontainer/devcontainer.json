@@ -1,0 +1,9 @@
+{
+  "name": "IoT Smart Lighting",
+  "forwardPorts": [9090, 1880, 5000, 1883, 1884],
+  "portsAttributes": {
+    "9090": {"label": "ThingsBoard", "onAutoForward": "notify", "visibility": "public"},
+    "1880": {"label": "Node-RED", "onAutoForward": "notify", "visibility": "public"},
+    "5000": {"label": "Flask IA", "onAutoForward": "notify", "visibility": "public"}
+  }
+}
