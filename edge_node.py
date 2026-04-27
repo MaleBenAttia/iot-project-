@@ -9,7 +9,7 @@ import json
 import time
 from datetime import datetime
 
-BROKER      = "192.168.100.214"
+BROKER      = "localhost"
 PORT        = 1883
 TOPIC_SUB   = "smart_lighting/node_01/sensors/#"
 TOPIC_PUB   = "smart_lighting/node_01/cmd/pwm"

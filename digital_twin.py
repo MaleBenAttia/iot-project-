@@ -2,14 +2,14 @@
 import json, time, threading, requests
 import paho.mqtt.client as mqtt
 
-VM_IP        = "192.168.100.214"
+VM_IP        = "172.18.0.3"
 BROKER_HOST  = VM_IP
 BROKER_PORT  = 1883
 BROKER_USER  = "iotuser"
 BROKER_PASS  = "SmartLight2025"
-TB_HOST      = VM_IP
-TB_PORT      = 1884
-TB_TOKEN     = "7WYKfYJKxEAV3S8vlMAz"
+TB_HOST = "172.18.0.4"
+TB_PORT = 1883
+TB_TOKEN = "gltyGA7yg3VV0Dc2OFpE"
 FLASK_URL    = f"http://{VM_IP}:5000"
 TWIN_INTERVAL= 10
 LED_MAX_WATT = 17.5

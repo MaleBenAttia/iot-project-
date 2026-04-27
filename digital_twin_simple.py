@@ -6,7 +6,7 @@ Version corrigée et simplifiée
 
 import requests, json, uuid as uuidlib, sys
 
-URL = "http://192.168.100.214:9090"
+URL = "http://localhost:9090"
 USER = "tenant@thingsboard.org"
 PASS = "tenant"
 
@@ -115,7 +115,7 @@ if resp.status_code == 200:
     nid = resp.json()["id"]["id"]
     print("\n" + "="*65)
     print("✅ Digital Twin créé avec succès !")
-    print(f"🌐 Lien : http://192.168.100.214:9090/dashboards/{nid}")
+    print(f"🌐 Lien : http://localhost:9090/dashboards/{nid}")
     print("="*65)
 else:
     print(f"❌ Erreur {resp.status_code}")

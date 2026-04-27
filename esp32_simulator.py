@@ -40,7 +40,7 @@ from datetime import datetime
 # ⚙️  CONFIGURATION — MODIFIER CES VALEURS SELON TON ENVIRONNEMENT
 # ══════════════════════════════════════════════════════════════════════
 
-BROKER_HOST   = "192.168.100.214"   # ← IP de ta VM Ubuntu
+BROKER_HOST   = "localhost"   # ← IP de ta VM Ubuntu
 BROKER_PORT   = 8883                 # 8883 = MQTTS (TLS) | 1883 = MQTT
 NODE_ID       = "node_01"            # Identifiant du nœud
 

@@ -621,3 +621,5 @@ module.exports = {
     //    */
     //},
 }
+
+module.exports.credentialSecret = "SmartLight2025";

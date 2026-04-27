@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import requests, json, uuid as uuidlib, sys
 
-URL       = "http://192.168.100.214:9090"
+URL       = "http://localhost:9090"
 USER      = "tenant@thingsboard.org"
 PASS      = "tenant"
 DEVICE_ID = "f899bcf0-3a47-11f1-8159-3bc305173aa3"

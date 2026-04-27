@@ -3,7 +3,7 @@ import json
 import time
 
 # --- Configuration ---
-BROKER = "192.168.100.214"
+BROKER = "localhost"
 PORT = 1883
 USER = "iotuser"
 PASS = "SmartLight2025"
